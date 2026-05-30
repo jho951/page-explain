@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-import type { LogoProps } from './Logo.types';
 import { ICON_BASE_PATH } from '@/shared/config';
-import styles from './Logo.module.css';
+import { LogoProps } from '@/shared/ui';
+import styles from '@/shared/ui/logo/Logo.module.css';
 
 const Logo = ({ pathname, onClick, text, size, homeAriaLabel }: LogoProps) => {
   return (

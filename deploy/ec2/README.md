@@ -1,29 +1,34 @@
-# EC2 Deployment Bundle
+# EC2 Deploy Assets
 
-이 디렉터리는 EC2에서 앱 레포를 clone하지 않고 배포할 때 사용하는 번들입니다.
+이 디렉터리는 EC2에 앱 소스를 clone 하지 않고, 배포용 파일만 올리는 운영 방식을 위한 최소 산출물입니다.
 
-## 구성
+## 서버에 두는 파일
 
 - `docker-compose.yml`
-- `.env`
-- `nginx/default.conf`
+- `.env.production`
+- `nginx/explain-page.conf`
 
-## 사용 순서
+## 운영 원칙
 
-1. 이 디렉터리만 EC2에 업로드합니다.
-2. `.env.example`을 `.env`로 복사합니다.
-3. `EXPLAIN_PAGE_IMAGE`를 실제 ECR 이미지로 바꿉니다.
-4. 필요하면 도메인/포트 값을 수정합니다.
-5. 아래를 실행합니다.
+- EC2에는 `Explain-page` 앱 소스를 clone 하지 않습니다.
+- EC2는 Docker image를 pull 받아 실행하는 서버입니다.
+- 앱 컨테이너는 `127.0.0.1:${EXPLAIN_PAGE_APP_PORT}` 로만 바인딩합니다.
+- 호스트 Nginx가 앞단에서 받아 컨테이너로 reverse proxy 합니다.
+
+## 배포 순서
+
+1. EC2에 이 디렉터리의 파일만 복사합니다.
+2. `.env.production.example` 을 `.env.production` 으로 복사하고 값을 채웁니다.
+3. `nginx/explain-page.conf.example` 를 실제 서버 이름과 포트에 맞게 조정합니다.
+4. `/etc/nginx/conf.d/` 등에 Nginx 설정을 반영합니다.
+5. 아래 명령으로 이미지를 갱신합니다.
 
 ```bash
-docker compose pull
-docker compose up -d
-docker compose ps
+docker compose --env-file .env.production pull
+docker compose --env-file .env.production up -d
 ```
 
-## 전제
+## 참고
 
-- EC2에는 Docker와 `docker compose`가 설치되어 있어야 합니다.
-- EC2는 ECR에서 이미지를 pull할 수 있어야 합니다.
-- Nginx 컨테이너가 80 포트를 받아 `explain-page` 앱 컨테이너의 3000 포트로 reverse proxy 합니다.
+- 이 디렉터리의 `docker-compose.yml` 은 image 실행 전용입니다.
+- build context, source mount, dev server 실행 설정은 포함하지 않습니다.

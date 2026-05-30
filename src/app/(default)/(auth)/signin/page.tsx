@@ -17,8 +17,8 @@ async function SignInPage({ searchParams }: SearchRouteProps) {
 
   return (
     <SignInTemplate
-      title="SB에 오신 것을 환영합니다"
-      desc="GitHub callback은 Gateway가 처리하고, 이 프론트는 `ticket -> /auth/exchange -> /auth/session` 확인 뒤 앱 진입 시 `/auth/me`를 조회합니다."
+      title="로그인"
+      desc="로그인합니다."
       dividerText="또는"
       locale={DEFAULT_LOCALE}
       authConfigured={authConfigured}

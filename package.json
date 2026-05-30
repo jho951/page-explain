@@ -16,6 +16,7 @@
     "node": ">=20.17.0"
   },
   "scripts": {
+    "sync:tistory-skin": "node scripts/sync-tistory-skin.mjs",
     "prepare": "husky install",
     "dev": "next dev",
     "start": "next start",

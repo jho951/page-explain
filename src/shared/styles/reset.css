@@ -122,7 +122,7 @@ q::after {
 /* ------------------------------
  * 🖥️ 레이아웃
  * ------------------------------ */
-main {
+body > main {
   width: var(--base-width);
   max-width: var(--base-max-width);
 

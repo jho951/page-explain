@@ -1,30 +1,112 @@
-import type { NavigationSocialLink, NavigationTreeLink } from '@/shared/types';
+import type {
+  Locale,
+  NavigationSocialLink,
+  NavigationTarget,
+  NavigationTreeLink,
+} from '@/shared/types';
+
+type CommunityLinkId = 'linkedIn' | 'slack' | 'discord' | 'github';
+type CommunityContactIcon = CommunityLinkId;
+type NavigationChild = NonNullable<NavigationTreeLink['children']>[number];
+
+interface CommunityLink {
+  id: CommunityLinkId;
+  label: string;
+  href: string;
+  target: NavigationTarget;
+  contact?: {
+    title: string;
+    desc: Record<Locale, string>;
+    icon: CommunityContactIcon;
+  };
+}
+
+export const COMMUNITY_LINKS = {
+  linkedIn: {
+    id: 'linkedIn',
+    label: 'Linked In',
+    href: 'https://www.linkedin.com/in/%EC%9E%A5%ED%98%B8-%EC%9D%B4-7101a9370',
+    target: '_blank',
+    contact: {
+      title: 'LinkedIn',
+      desc: {
+        ko: '프로젝트와 업데이트를 프로필에서 확인해 보세요',
+        en: 'Follow project updates from the profile.',
+      },
+      icon: 'linkedIn',
+    },
+  },
+  slack: {
+    id: 'slack',
+    label: 'Slack',
+    href: 'https://join.slack.com/t/jho-tpk9387/shared_invite/zt-3w7d23unm-oCkaySg2IYDPHj2jeyaxqQ',
+    target: '_blank',
+    contact: {
+      title: 'Slack',
+      desc: {
+        ko: '새로운 기능을 가장 먼저 만나보세요',
+        en: 'Be the first to hear about new features.',
+      },
+      icon: 'slack',
+    },
+  },
+  discord: {
+    id: 'discord',
+    label: 'Discord',
+    href: 'https://discord.gg/6E5Sqnzc',
+    target: '_blank',
+    contact: {
+      title: 'Discord',
+      desc: {
+        ko: '함께 토론하고, 공유하고, 탐험해 보세요',
+        en: 'Discuss, share, and explore together.',
+      },
+      icon: 'discord',
+    },
+  },
+  github: {
+    id: 'github',
+    label: 'GitHub',
+    href: 'https://www.github.com/jho951',
+    target: '_blank',
+    contact: {
+      title: 'GitHub',
+      desc: {
+        ko: '연관 저장소와 구현 흐름을 확인해 보세요',
+        en: 'Browse related repositories and implementation history.',
+      },
+      icon: 'github',
+    },
+  },
+} as const satisfies Record<CommunityLinkId, CommunityLink>;
+
+export const COMMUNITY_LINK_LIST = [
+  COMMUNITY_LINKS.linkedIn,
+  COMMUNITY_LINKS.slack,
+  COMMUNITY_LINKS.discord,
+  COMMUNITY_LINKS.github,
+] as const;
+
+const COMMUNITY_NAV_LINKS = COMMUNITY_LINK_LIST;
+export const COMMUNITY_CONTACT_LINKS = COMMUNITY_LINK_LIST;
+const COMMUNITY_GNB_LINKS = COMMUNITY_LINK_LIST;
+
+const toNavigationChild = (
+  link: Pick<CommunityLink, 'id' | 'label' | 'href' | 'target'>,
+  id: string = link.id,
+): NavigationChild => ({
+  id,
+  label: link.label,
+  href: link.href,
+  target: link.target,
+});
 
 /** community Nav 메뉴 */
 export const COMMUNITY: NavigationTreeLink = {
   id: 'community',
   href: '/community',
   label: 'Community',
-  children: [
-    {
-      id: 'linkedIn',
-      label: 'Linked In',
-      href: 'https://www.linkedin.com/in/%EC%9E%A5%ED%98%B8-%EC%9D%B4-7101a9370',
-      target: '_blank',
-    },
-    {
-      id: 'slack',
-      label: 'Slack',
-      href: 'https://join.slack.com/t/jho-tpk9387/shared_invite/zt-3w7d23unm-oCkaySg2IYDPHj2jeyaxqQ',
-      target: '_blank',
-    },
-    {
-      id: 'discord',
-      label: 'Discord',
-      href: 'https://discord.gg/6E5Sqnzc',
-      target: '_blank',
-    },
-  ],
+  children: COMMUNITY_NAV_LINKS.map(link => toNavigationChild(link)),
 };
 
 /** support Nav 메뉴 */
@@ -123,26 +205,7 @@ export const GNB: NavigationTreeLink[] = [
     id: 'gnb-community',
     href: '/community',
     label: 'Community',
-    children: [
-      {
-        id: 'gnb-linkedIn',
-        label: 'Linked In',
-        href: 'https://www.linkedin.com/in/%EC%9E%A5%ED%98%B8-%EC%9D%B4-7101a9370',
-        target: '_blank',
-      },
-      {
-        id: 'gnb-slack',
-        label: 'Slack',
-        href: 'https://join.slack.com/t/jho-tpk9387/shared_invite/zt-3w7d23unm-oCkaySg2IYDPHj2jeyaxqQ',
-        target: '_blank',
-      },
-      {
-        id: 'gnb-discord',
-        label: 'Discord',
-        href: 'https://discord.gg/6E5Sqnzc',
-        target: '_blank',
-      },
-    ],
+    children: COMMUNITY_GNB_LINKS.map(link => toNavigationChild(link, `gnb-${link.id}`)),
   },
   {
     id: 'gnb-legal',

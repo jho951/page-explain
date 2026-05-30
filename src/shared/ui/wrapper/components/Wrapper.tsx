@@ -5,16 +5,18 @@ import {
   ClientProvider,
   TranslationsProvider,
 } from '@/shared/providers';
-import type { WrapperProps } from '../types/Wrapper.types';
+import { DEFAULT_LOCALE } from '@/shared/config';
+import { WrapperProps } from '@/shared/ui';
 
 async function Wrapper({ children, modal, params }: WrapperProps) {
-  const { lang } = params;
-  const { common: messages } = getMessages(lang);
+  const { lang } = params ? await params : {};
+  const resolvedLang = lang ?? DEFAULT_LOCALE;
+  const { common: messages } = getMessages(resolvedLang);
 
   return (
     <ReduxProvider>
       <ThemeProvider>
-        <TranslationsProvider messages={messages} lang={lang}>
+        <TranslationsProvider messages={messages} lang={resolvedLang}>
           <ClientProvider modal={modal}>{children}</ClientProvider>
         </TranslationsProvider>
       </ThemeProvider>

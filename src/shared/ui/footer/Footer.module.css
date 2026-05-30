@@ -1,26 +1,19 @@
 .footerContainer {
-  width: var(--base-width);
-  max-width: var(--base-max-width);
+  width: 100%;
+  max-width: none;
   position: relative;
   display: flex;
   flex-direction: column;
+  margin: 2.5rem auto;
   gap: 2rem;
   z-index: var(--footer-z-index);
 }
 
 .fnbContainer {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  justify-items: center;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  justify-items: stretch;
   gap: 1.5rem;
-}
-
-@media (max-width: 767px) {
-  .fnbContainer {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    justify-items: stretch;
-    gap: 1.2rem;
-  }
 }
 
 @media (min-width: 768px) {

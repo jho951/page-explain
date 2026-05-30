@@ -60,6 +60,11 @@
   border: 0;
 }
 
+body:has(#homeHero) > main header {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .layout-shell {
   width: min(100%, var(--layout-shell-max, var(--content-shell-max-narrow)));
   margin: 0 auto;

@@ -13,21 +13,21 @@ const INFO_PAGE_COPY = {
   ko: {
     service: {
       eyebrow: 'SERVICE',
-      title: '서비스 소개',
+      title: 'Block Editor 설명',
       description:
-        '현재 이 페이지는 mock 소개 페이지입니다. 실제 운영 전에는 서비스 구조, 기능 범위, 사용자 플로우 중심으로 구체화될 예정입니다.',
+        '이 페이지는 block-editor가 어떤 편집 경험을 제공하는지, 어떤 API와 인증 경계 위에서 동작하는지 설명하는 mock 안내 페이지입니다.',
       sections: [
         {
-          title: '무엇을 제공하나요?',
-          body: '에디터 서비스 진입 전 기본 소개, 로그인 진입, 현재 연결된 서비스 구조를 한 번에 보여주는 역할을 합니다.',
+          title: 'block-editor는 무엇인가요?',
+          body: 'block-editor는 문서를 블록 단위로 읽고, 수정하고, 정리하는 실제 편집 워크스페이스입니다. 현재 프론트는 그 제품을 사용하기 전 필요한 설명을 먼저 제공합니다.',
         },
         {
-          title: '현재 상태',
-          body: '지금은 mock 콘텐츠만 반영되어 있으며, 이후 정책과 실제 기능 흐름에 맞춰 정식 설명 문구로 교체됩니다.',
+          title: '어떻게 연결되나요?',
+          body: '로그인과 세션 확인은 Gateway를 통해 처리되고, 문서는 /v1/documents/**, 블록 단위 편집 동작은 /v1/editor-operations/** 경로를 기준으로 연결됩니다.',
         },
         {
-          title: '다음 단계',
-          body: '서비스 목적, 대상 사용자, 주요 기능, API 연동 범위를 기준으로 문서를 정리할 예정입니다.',
+          title: '사용자는 무엇을 기대하면 되나요?',
+          body: '설명을 읽은 뒤 인증이 완료되면 사용자는 block-editor 워크스페이스로 이동해 문서를 열고, 블록 단위 편집 흐름을 이어가게 됩니다.',
         },
       ],
     },
@@ -55,21 +55,21 @@ const INFO_PAGE_COPY = {
   en: {
     service: {
       eyebrow: 'SERVICE',
-      title: 'Service',
+      title: 'Block Editor Guide',
       description:
-        'This is currently a mock service page. Before launch, it will be replaced with clearer information about product scope, capabilities, and user flow.',
+        'This is a mock guide page that explains what block-editor is, what kind of editing experience it provides, and which authentication and API boundaries sit around it.',
       sections: [
         {
-          title: 'What does it provide?',
-          body: 'It explains the entry flow into the editor service, sign-in, and the currently connected service structure in one place.',
+          title: 'What is block-editor?',
+          body: 'Block-editor is the real editing workspace where users read, update, and organize documents as block-based content. This frontend explains that product and its surrounding context before users start editing.',
         },
         {
-          title: 'Current status',
-          body: 'Only mock content is shown for now, and it will later be replaced with production-ready service copy.',
+          title: 'How is it connected?',
+          body: 'Sign-in and session checks are handled through the Gateway, documents flow through /v1/documents/**, and block-level editing actions are separated through /v1/editor-operations/**.',
         },
         {
-          title: 'Next step',
-          body: 'The page will later be expanded with clearer product goals, target users, main features, and integration scope.',
+          title: 'What should users expect?',
+          body: 'After reading the explanation and completing authentication, users move into the block-editor workspace to open documents and continue with block-level editing flow.',
         },
       ],
     },

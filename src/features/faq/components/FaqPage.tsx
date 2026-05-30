@@ -14,17 +14,17 @@ const FAQ_COPY = {
       {
         question: '이 서비스는 무엇을 위한 페이지인가요?',
         answer:
-          'Explain Page는 로그인 진입과 서비스 구조 안내를 담당하는 프론트 페이지입니다. 현재는 에디터 서비스로 진입하기 전 기본 정보를 제공하는 역할을 합니다.',
+          '이 페이지는 block-editor가 무엇을 하는 제품인지, 어떤 인증과 API 경계 위에서 동작하는지, 실제 워크스페이스는 어디서 열리는지를 설명하는 안내 페이지입니다.',
       },
       {
         question: '로그인은 어떻게 동작하나요?',
         answer:
-          '로그인은 Gateway를 통해 처리됩니다. 로그인하지 않은 상태에서 시작하기를 누르면 SSO 로그인 흐름으로 이동하고, 로그인 완료 후에는 서비스 페이지로 연결됩니다.',
+          '로그인은 Gateway를 통해 처리됩니다. 로그인하지 않은 상태에서 시작하기를 누르면 SSO 로그인 흐름으로 이동하고, 로그인 완료 후에는 설정된 block-editor 시작 주소 또는 현재 서비스 경로로 돌아옵니다.',
       },
       {
         question: '문서 편집은 어디서 하나요?',
         answer:
-          '실제 문서 편집은 별도의 에디터 서비스 페이지에서 진행합니다. Explain Page는 그 서비스로 들어가기 전 안내와 진입점을 제공합니다.',
+          '실제 문서 편집은 별도의 block-editor 워크스페이스에서 진행합니다. 현재 프론트는 그 워크스페이스가 무엇인지 설명하고, 사용 전에 필요한 안내를 제공합니다.',
       },
       {
         question: '현재 FAQ 내용은 확정된 정책인가요?',
@@ -42,17 +42,17 @@ const FAQ_COPY = {
       {
         question: 'What is this service page for?',
         answer:
-          'Explain Page is the frontend entry page for sign-in and service guidance. Right now it mainly introduces the platform before users move into the editor service.',
+          'This page explains what block-editor is, which authentication and API boundaries surround it, and where the real workspace opens for users.',
       },
       {
         question: 'How does sign-in work?',
         answer:
-          'Sign-in is handled through the Gateway. If you are not authenticated and press Get started, the app sends you into the SSO login flow and then forwards you to the service page.',
+          'Sign-in is handled through the Gateway. If you are not authenticated and press Get started, the app sends you into the SSO login flow and then forwards you to the configured block-editor start URL or back into the current service path.',
       },
       {
         question: 'Where do I edit documents?',
         answer:
-          'Actual document editing happens in a separate editor service page. Explain Page acts as the guidance and entry point before that handoff.',
+          'Actual document editing happens in a separate block-editor workspace. This frontend explains that workspace and provides the guidance users need before they enter it.',
       },
       {
         question: 'Is this FAQ final?',
